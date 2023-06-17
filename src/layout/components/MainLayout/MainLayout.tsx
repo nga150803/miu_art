@@ -13,19 +13,20 @@ const MainLayout = (props: MainLayoutProps) => {
 
   const [checkWidth, setCheckWidth] = useState<boolean>(false)
 
-  useEffect(() => {
-    
-    const handleResize = () => {
-      if(window.innerWidth < 768){
-        setCheckWidth(true)
-       
-      }else{
-        setCheckWidth(false)
 
-      }
+  const handleResize = () => {
+    if(window.innerWidth < 768){
+      setCheckWidth(true)
+     
+    }else{
+      setCheckWidth(false)
+
     }
-    
+  }
+  useEffect(() => {
+    handleResize()
     window.addEventListener('resize', handleResize)
+    return()=> window.removeEventListener('resize', handleResize)
 },[])
   return (
     <div className='main-layout flex flex-col gap-8 overflow-x-hidden'>

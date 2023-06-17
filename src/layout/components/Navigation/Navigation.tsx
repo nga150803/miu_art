@@ -16,7 +16,7 @@ const Navigation = () => {
         <Link to='' onClick={()=> handleIconClick('search')}>
           <IonIcon name='search'  className={selectedIcon ==='search' ? ' -translate-y-2 scale-110 duration-300 text-red-300' : 'text-gray-500'} />
         </Link>
-        <Link to=''onClick={()=> handleIconClick('home')}>
+        <Link to='/'onClick={()=> handleIconClick('home')}>
           <IonIcon name='home'  className={selectedIcon ==='home' ? ' -translate-y-2 scale-110 duration-300 text-red-300' : 'text-gray-500'} />
         </Link>
         <Link to='' onClick={()=> handleIconClick('settings')}>
