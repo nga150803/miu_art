@@ -13,8 +13,8 @@ const Navigation = () => {
   return (
     <div className='fixed bottom-0 w-screen py-4 z-50'>
       <div className='m-auto flex w-4/5 translate-y-1 items-center justify-between text-2xl bg-pink-200 rounded-3xl p-4 text-gray-600'>
-        <Link to='' onClick={()=> handleIconClick('search')}>
-          <IonIcon name='search'  className={selectedIcon ==='search' ? ' -translate-y-2 scale-110 duration-300 text-red-300' : 'text-gray-500'} />
+        <Link to='/video' onClick={()=> handleIconClick('search')}>
+          <IonIcon name='videocam'  className={selectedIcon ==='search' ? ' -translate-y-2 scale-110 duration-300 text-red-300' : 'text-gray-500'} />
         </Link>
         <Link to='/'onClick={()=> handleIconClick('home')}>
           <IonIcon name='home'  className={selectedIcon ==='home' ? ' -translate-y-2 scale-110 duration-300 text-red-300' : 'text-gray-500'} />
