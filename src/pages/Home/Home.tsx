@@ -1,100 +1,88 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
-import { Link } from 'react-router-dom'
-import { listImageProps } from '../../types/listImage'
-import Loading from '../../component/share/Loading/Loading'
 import IonIcon from '@reacticons/ionicons'
+import MiniCalendar from '../../component/MiniCalendar/MiniCalendar'
+import ManagementUser from '../../component/share/ManagementUser/ManagementUser'
+import PieChart from '../../component/charts/PieChart'
+import {pieChartOptions, pieChartData} from '../../layout/components/variables/charts'
 
 const Home = () => {
-    const [isImage, setIsImage] = useState<listImageProps[]>([])
-    const [isPage, setIsPage] = useState<number>(1)
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [loaded, setLoaded] = useState<boolean>(false)
-    const [model, setModel] = useState<boolean>(false)
-    const [ tempImg, setTempImg]= useState<string>('')
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true)
-            try {
-                const response = await axios.get(`https://api.pexels.com/v1/curated?page=${isPage}&per_page=20`, {
-                    headers: {
-                        Authorization: 'lgyF8olfKpu21F7Vr27jJXX2kgYXr5tt8VdR3gTQTnk7dr8RVq8kZ19G'
-                    }
-                })
-                setIsImage(response.data.photos)
-                setIsLoading(false)
-                
-            } catch (error) {
-                console.log(error)
-                setIsLoading(false)
-            }
-        }
-        fetchData()
-    }, [isPage])
-
-    if (isLoading) return <Loading />
-    const detailImage = (image:string)=>{
-        setModel(true)
-        setTempImg(image)
-    }
-
-    return (
-        <div className='py-1'>
-<div className={model ? 'fixed bottom-0 right-0 top-0 z-30 flex items-center justify-center bg-white'
-: 'hidden'}>
-    <div className=' relative md:w-full md:h-full md:h-[40rem'>
-        <img src={tempImg} alt=""  className='md:m-auto md:object-cover md:h-full'/>
-    </div>
-    <div className='absolute right-3 top-6 bg-slate-50 rounded-[60%] p-4'>
-        <IonIcon className='text-lg text-pink-600 font-bold' name='close' onClick={()=>{
-            setModel(false)
-        }} />
-    </div>
-</div>
-
-            <div className='columns-2 gap-5 sm:gap-8 md:columns-3 lg:columns-5 [&>img:not(:first-child)]:mt-8'>
-                {isImage.map((item) => {
-                    return (
-                        <div
-                            key={item.id} 
-                            
-                            className=' relative mb-8 min-h-[20rem] cursor-pointer overflow-hidden rounded-lg bg-slate-200  filter duration-300 hover:brightness-75'
-                        >
-                            <LazyLoadImage
-                                className='scale-110 '
-                                src={item.src.original}
-                                alt={item.alt}
-                                effect='blur'
-                                beforeLoad={() => setLoaded(false)}
-                                afterLoad={() => setLoaded(true)}
-                            />
-                            {loaded && (
-                                <h4 className='absolute bottom-2 left-2 font-bold text-white'>{item.photographer}</h4>
-                            )}
-                            <div  onClick={()=>{
-                                detailImage(item.src.original)
-                            }}
-                             className='absolute left-0 top-0 h-full w-full'></div>
-                        </div>
-                    )
-                })}
+  return (
+    <>
+      <div className='mt-8'>
+        {/* //total */}
+        <div className='layout'>
+          <div className='flex gap-[1rem] rounded-2xl bg-white p-[2rem] '>
+            <div className='flex items-center justify-center '>
+              <IonIcon
+                name='stats-chart-outline'
+                className='rounded-full bg-[#F4F7FE] p-[20px] text-[1.7rem] text-blue-600 '
+              />
             </div>
-            <div className='mt-8 flex justify-center gap-4 '>
-                {isPage > 1 && (
-                    <button className='rounded-lg bg-slate-200 px-6 py-4' onClick={() => setIsPage(isPage - 1)}>
-                        {isPage - 1}
-                    </button>
-                )}
-                <button className='text_gradient rounded-lg px-6 py-4 text-white'>{isPage}</button>
-                <button className='rounded-lg bg-slate-200 px-6 py-4' onClick={() => setIsPage(isPage + 1)}>
-                    {isPage + 1}
-                </button>
+            <div className='flex flex-col justify-center leading-8 '>
+              <h1 className='text-[1.05rem] font-semibold text-[#848282]'>Doanh thu</h1>
+              <p className='text-[1.4rem] font-semibold '>20.000.000</p>
             </div>
+          </div>
+          <div className='flex gap-[1rem] rounded-2xl bg-white p-[1rem] '>
+            <div className='flex items-center justify-center '>
+              <IonIcon
+                name='save-outline'
+                className='rounded-full bg-[#fff8e9] p-[20px] text-[1.7rem] text-orange-500 '
+              />
+            </div>
+            <div className='flex flex-col justify-center leading-8 '>
+              <h1 className='text-[1.05rem] font-semibold text-[#848282]'>Tổng sản phẩm</h1>
+              <p className='text-[1.4rem] font-semibold '>134</p>
+            </div>
+          </div>
+          <div className='flex gap-[1rem] rounded-2xl bg-white p-[1rem] '>
+            <div className='flex items-center justify-center '>
+              <IonIcon
+                name='checkmark-circle-outline'
+                className='rounded-full bg-[#ffffe2] p-[20px] text-[1.7rem] text-yellow-500 '
+              />
+            </div>
+            <div className='flex flex-col justify-center leading-8 '>
+              <h1 className='text-[1.05rem] font-semibold text-[#848282]'>Tổng đơn hàng</h1>
+              <p className='text-[1.4rem] font-semibold '>205</p>
+            </div>
+          </div>
+          <div className='flex gap-[1rem] rounded-2xl bg-white p-[1rem] '>
+            <div className='flex items-center justify-center '>
+              <IonIcon
+                name='happy-outline'
+                className='rounded-full bg-[#edfff5] p-[20px] text-[1.7rem] text-green-500 '
+              />
+            </div>
+            <div className='flex flex-col justify-center leading-8 '>
+              <h1 className='text-[1.05rem] font-semibold text-[#848282]'>Tổng khách hàng</h1>
+              <p className='text-[1.4rem] font-semibold '>78</p>
+            </div>
+          </div>
+          
         </div>
-    )
+        {/* ?? */}
+
+        <div className='mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2'>
+          <div className='bg-pink-50 '>
+            <ManagementUser />
+          </div>
+          
+          <div className='grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2'>
+            
+
+            <div className=''>
+              <MiniCalendar />
+            </div>
+            <div >
+              {/* <Chart /> */}
+                  <PieChart options={pieChartOptions} series={pieChartData}/>              
+            </div>
+          </div>
+       
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default Home

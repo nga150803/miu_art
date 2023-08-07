@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "types": [
+      "react",
+      "react-dom",
+      "react-highlight-words"
+    ],
     "target": "es5",
     "lib": [
       "dom",
@@ -15,6 +20,7 @@
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
+
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,

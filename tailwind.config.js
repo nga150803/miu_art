@@ -6,7 +6,8 @@ module.exports = {
       width: {
         'wd-primary': '100%',
         'wd-secondary': '90%',
-        'wd-tertiary': '80%'
+        'wd-tertiary': '80%',
+        'wd-small':'70%'
       },
       screens: {
         sm: '640px',
@@ -26,7 +27,7 @@ module.exports = {
       },
       fontSize: {
         'tx-secondary': '1.5rem',
-        'tx-textLogo': '2rem',
+        'tx-textLogo': '1.7rem',
 
         'tx-md-textLogo': '2.5rem'
       },

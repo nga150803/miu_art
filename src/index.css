@@ -3,9 +3,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body{
+  overflow-x: hidden;
+
+}
 
 .text_gradient {
   background: -webkit-linear-gradient(#faaca8, #ddd6f3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.text_gradient1 {
+  background: -webkit-linear-gradient(#8EC5FC, #E0C3FC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.background {
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  
+}
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1.5rem;
+}
+.box-shadow {
+  box-shadow: rgba(120, 120, 120, 0.2) 0px 2px 8px 0px;
+}
+.limit {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* // */
+input.defaultCheckbox::before {
+  /* content: url(../src/assets/svg/checked.svg);  */
+  color: white;
+  opacity: 0;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+
+input:checked.defaultCheckbox::before {
+  opacity: 1;
 }
